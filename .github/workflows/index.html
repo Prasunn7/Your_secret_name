@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Your Name – Portfolio</title>
+  <meta name="description" content="Portfolio of Your Name – projects, skills, and contact information." />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #0b1020;
+      --card: #121831;
+      --text: #e8ecf1;
+      --muted: #a6b0c3;
+      --brand: #6ea8fe;
+      --accent: #7ee787;
+      --ring: rgba(110, 168, 254, 0.35);
+      --shadow: 0 10px 30px rgba(0,0,0,.35), 0 4px 14px rgba(0,0,0,.25);
+    }
+    @media (prefers-color-scheme: light) {
+      :root {
+        --bg: #f7f9fc;
+        --card: #ffffff;
+        --text: #0d1321;
+        --muted: #5b6475;
+        --brand: #2b6cff;
+        --accent: #0aa85f;
+        --ring: rgba(43,108,255,.25);
+        --shadow: 0 10px 30px rgba(15, 25, 55, .12), 0 4px 14px rgba(15, 25, 55, .08);
+      }
+    }
+    * { box-sizing: border-box; }
+    html, body { height: 100%; }
+    body {
+      margin: 0;
+      font-family: 'Inter', system-ui, -apple-system, Segoe UI, Roboto, 'Helvetica Neue', Arial, 'Noto Sans', 'Apple Color Emoji', 'Segoe UI Emoji';
+      background: radial-gradient(1200px 700px at 10% -10%, rgba(110,168,254,.12), transparent 40%),
+                  radial-gradient(900px 600px at 110% 10%, rgba(126,231,135,.14), transparent 40%),
+                  var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+    }
+    a { color: var(--brand); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+
+    .container { max-width: 1100px; margin: 0 auto; padding: 24px; }
+    header {
+      position: sticky; top: 0; z-index: 50; backdrop-filter: blur(10px);
+      background: color-mix(in oklab, var(--bg) 80%, transparent);
+      border-bottom: 1px solid color-mix(in oklab, var(--muted) 25%, transparent);
+    }
+    .nav { display: flex; align-items: center; justify-content: space-between; gap: 16px; }
+    .brand { display: flex; align-items: center; gap: 12px; font-weight: 700; letter-spacing: .3px; }
+    .brand .logo { width: 36px; height: 36px; border-radius: 12px; background: linear-gradient(135deg, var(--brand), var(--accent)); box-shadow: var(--shadow); }
+    .nav a { color: var(--text); opacity: .9; font-weight: 500; }
+    .links { display: flex; gap: 16px; align-items: center; }
+
+    .btn { display:inline-flex; align-items:center; gap:8px; padding:10px 14px; border-radius: 12px; border: 1px solid color-mix(in oklab, var(--brand) 35%, transparent); background: color-mix(in oklab, var(--brand) 12%, transparent); color: var(--text); font-weight: 600; box-shadow: var(--shadow); transition: transform .12s ease, box-shadow .12s ease; }
+    .btn:hover { transform: translateY(-1px); text-decoration: none; }
+
+    .hero { display: grid; grid-template-columns: 1.2fr 1fr; gap: 32px; padding: 48px 0 24px; align-items: center; }
+    .hero h1 { font-size: clamp(28px, 4vw, 44px); line-height: 1.1; margin: 0 0 16px; }
+    .hero p { color: var(--muted); margin: 0 0 20px; }
+    .card { background: color-mix(in oklab, var(--card) 92%, transparent); border: 1px solid color-mix(in oklab, var(--muted) 20%, transparent); border-radius: 18px; box-shadow: var(--shadow); padding: 20px; }
+    .avatar { aspect-ratio: 1/1; width: 100%; border-radius: 18px; background: linear-gradient(135deg, rgba(110,168,254,.25), rgba(126,231,135,.25)); display: grid; place-items: center; font-size: 48px; font-weight: 800; letter-spacing: 2px; color: color-mix(in oklab, var(--text) 80%, transparent); }
+
+    .section { padding: 32px 0; }
+    .section h2 { font-size: clamp(22px, 3vw, 32px); margin: 0 0 16px; }
+    .grid { display: grid; gap: 16px; }
+    @media (min-width: 800px) { .grid-3 { grid-template-columns: repeat(3, 1fr); } .grid-2 { grid-template-columns: repeat(2, 1fr); } }
+
+    .tag { display:inline-block; padding:6px 10px; border-radius: 999px; background: color-mix(in oklab, var(--brand) 18%, transparent); border: 1px solid color-mix(in oklab, var(--brand) 30%, transparent); font-size: 12px; font-weight: 600; margin: 4px 6px 0 0; }
+
+    .project { display:flex; flex-direction: column; gap:10px; }
+    .project h3 { margin: 0; font-size: 18px; }
+    .project p { margin: 0; color: var(--muted); }
+    .project .thumb { border-radius: 14px; aspect-ratio: 16/9; background: linear-gradient(135deg, rgba(110,168,254,.22), rgba(126,231,135,.22)); border: 1px dashed color-mix(in oklab, var(--muted) 35%, transparent); display:grid; place-items:center; font-weight: 600; color: var(--muted); }
+
+    .list { display: grid; gap: 10px; }
+    .list li { list-style: none; padding-left: 0; }
+
+    footer { padding: 40px 0 60px; text-align: center; color: var(--muted); }
+
+    .row { display:flex; gap:12px; flex-wrap: wrap; align-items: center; }
+    .divider { height: 1px; background: color-mix(in oklab, var(--muted) 25%, transparent); margin: 24px 0; }
+
+    /* Simple focus styles */
+    :is(a, button, .btn) { outline: none; }
+    :is(a, button, .btn):focus-visible { box-shadow: 0 0 0 4px var(--ring); border-radius: 12px; }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="container nav">
+      <div class="brand">
+        <div class="logo" aria-hidden="true"></div>
+        <span>Your Name</span>
+      </div>
+      <nav class="links" aria-label="Primary">
+        <a href="#projects">Projects</a>
+        <a href="#skills">Skills</a>
+        <a href="#experience">Experience</a>
+        <a href="#contact">Contact</a>
+        <a class="btn" href="#" download>
+          <!-- Download icon -->
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M12 3v12m0 0 4-4m-4 4-4-4M4 21h16" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          Resume
+        </a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container">
+    <!-- Hero -->
+    <section class="hero">
+      <div>
+        <h1>Hi, I'm <span style="color:var(--brand)">Your Name</span> —
+          a Developer building clean, fast, and accessible experiences.</h1>
+        <p>Based in Your City. I specialize in <strong>Frontend</strong> and <strong>APIs</strong>, turning ideas into delightful products.</p>
+        <div class="row">
+          <a class="btn" href="#projects">View Projects</a>
+          <a class="btn" href="#contact">Contact Me</a>
+        </div>
+      </div>
+      <div class="card">
+        <div class="avatar">YN</div>
+        <div class="row" style="margin-top:12px">
+          <a href="https://github.com/yourusername" target="_blank" rel="noreferrer">GitHub</a>
+          <span>·</span>
+          <a href="https://www.linkedin.com/in/yourusername/" target="_blank" rel="noreferrer">LinkedIn</a>
+          <span>·</span>
+          <a href="mailto:you@example.com">Email</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Projects -->
+    <section id="projects" class="section">
+      <h2>Featured Projects</h2>
+      <div class="grid grid-3">
+        <article class="card project">
+          <div class="thumb">Screenshot / Demo</div>
+          <h3>Project One</h3>
+          <p>Short description of what it does and your impact. Result, metrics, or tech used.</p>
+          <div>
+            <span class="tag">React</span>
+            <span class="tag">Node</span>
+            <span class="tag">PostgreSQL</span>
+          </div>
+          <div class="row">
+            <a href="#">Live</a><span>·</span><a href="#">Code</a>
+          </div>
+        </article>
+
+        <article class="card project">
+          <div class="thumb">Screenshot / Demo</div>
+          <h3>Project Two</h3>
+          <p>Describe the problem, solution, and what makes it interesting.</p>
+          <div>
+            <span class="tag">Python</span>
+            <span class="tag">FastAPI</span>
+            <span class="tag">Docker</span>
+          </div>
+          <div class="row">
+            <a href="#">Live</a><span>·</span><a href="#">Code</a>
+          </div>
+        </article>
+
+        <article class="card project">
+          <div class="thumb">Screenshot / Demo</div>
+          <h3>Project Three</h3>
+          <p>What you built, how you built it, and what you learned.</p>
+          <div>
+            <span class="tag">TypeScript</span>
+            <span class="tag">Next.js</span>
+            <span class="tag">Tailwind</span>
+          </div>
+          <div class="row">
+            <a href="#">Live</a><span>·</span><a href="#">Code</a>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <div class="divider"></div>
+
+    <!-- Skills -->
+    <section id="skills" class="section">
+      <h2>Skills & Tools</h2>
+      <div class="grid grid-3">
+        <div class="card">
+          <h3>Frontend</h3>
+          <ul class="list">
+            <li>HTML5, CSS3, JavaScript (ES202x)</li>
+            <li>React, Next.js</li>
+            <li>Accessibility (WCAG), Performance</li>
+          </ul>
+        </div>
+        <div class="card">
+          <h3>Backend</h3>
+          <ul class="list">
+            <li>Node.js, Express / Python, FastAPI</li>
+            <li>REST, GraphQL</li>
+            <li>Auth, Testing, CI/CD</li>
+          </ul>
+        </div>
+        <div class="card">
+          <h3>Infra</h3>
+          <ul class="list">
+            <li>Docker, Compose</li>
+            <li>PostgreSQL, Redis</li>
+            <li>AWS / Vercel / Render</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <div class="divider"></div>
+
+    <!-- Experience -->
+    <section id="experience" class="section">
+      <h2>Experience</h2>
+      <div class="grid grid-2">
+        <div class="card">
+          <h3>Job Title — Company</h3>
+          <p class="muted">2023 – Present • Remote / City</p>
+          <ul class="list">
+            <li>Owned feature X that improved Y by Z%.</li>
+            <li>Collaborated with A, B, C to deliver D.</li>
+            <li>Maintained CI/CD and improved build times by N%.</li>
+          </ul>
+        </div>
+        <div class="card">
+          <h3>Intern — Company</h3>
+          <p class="muted">2022 • City</p>
+          <ul class="list">
+            <li>Built tools to automate process X.</li>
+            <li>Wrote documentation and onboarding guides.</li>
+            <li>Presented findings to stakeholders.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <div class="divider"></div>
+
+    <!-- Contact -->
+    <section id="contact" class="section">
+      <h2>Contact</h2>
+      <div class="card">
+        <p>Open to roles, freelance, and collaborations. The fastest way to reach me is via email.</p>
+        <div class="row">
+          <a class="btn" href="mailto:you@example.com">
+            <!-- Mail icon -->
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M4 6h16v12H4z" stroke="currentColor" stroke-width="1.6"/><path d="m4 7 8 6 8-6" stroke="currentColor" stroke-width="1.6"/></svg>
+            you@example.com
+          </a>
+          <a class="btn" href="https://cal.com/yourname" target="_blank" rel="noreferrer">
+            <!-- Calendar icon -->
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><rect x="3" y="4" width="18" height="18" rx="3" stroke="currentColor" stroke-width="1.6"/><path d="M7 2v4M17 2v4M3 10h18" stroke="currentColor" stroke-width="1.6"/></svg>
+            Book a call
+          </a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container">
+      <p>© <span id="year"></span> Your Name. Built with ❤️ and vanilla HTML/CSS.</p>
+    </div>
+  </footer>
+
+  <script>
+    // Set current year
+    document.getElementById('year').textContent = new Date().getFullYear();
+    // Smooth scroll for anchor links
+    document.querySelectorAll('a[href^="#"]').forEach(a => {
+      a.addEventListener('click', e => {
+        const hash = a.getAttribute('href');
+        if (hash.length > 1) {
+          e.preventDefault();
+          document.querySelector(hash)?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+      });
+    });
+  </script>
+</body>
+</html>
